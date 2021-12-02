@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+
+:root{
+    --principal: #4B6587;
+    --secundario: #F0E5CF;
+    --terciario: #F7F6F2;
+    --cuarto: #C8C6C6;
+}
+/*https://colorhunt.co/palette/f0e5cff7f6f2c8c6c64b6587*/
+
+body{
+    font-family: 'Rubik', sans-serif;
+    margin: 0px;
+    background-color: var(--terciario);
+}
+
+.principal{
+    background-color: var(--terciario);
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.containerForm{
+    border-radius: 10px;
+    padding: 0 20px 0 50px;
+    background-color: var(--secundario);
+    height: 70vh;
+    width: 45vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.formReact{
+    background-color: var(--principal);
+    border-radius: 10px;
+    height: inherit;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content:  space-between;
+    align-items: center;
+    color: var(--terciario);
+    padding-top: 0px;
+}
+
+.imgContainer{
+    overflow: hidden;
+    height: 40vh;
+}
+
+img{
+    width: 100%;
+    /* object-position: 0% -10vh; */
+    border-radius: 10px;
+}
+
+.inputsContainer{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+label{
+    margin-bottom: 1%;
+    margin-left: 5%;
+}
+
+input, button{
+    margin-bottom: 5%;
+    margin: 0% 8% 5% 8%;
+    width: 85% !important;
+    height: 1.5rem;
+}
+
+.registroButton{
+    background-color: #26c6da;
+    border: none;
+    height: 2rem;
+}
+
+.registroButton:hover{
+    cursor: pointer;
+    background-color: #0086c3;
+}
+
+.validaciones{
+    text-align: center;
+    min-height: 15vh;
+}
+
+.regButton{
+    background-color: #29b6f6;
+    border: none;
+    height: 2rem;
+}
+
+.regButton:hover{
+    cursor: pointer;
+    background-color: #0086c3;
+}
+
+.forgetPass{
+    background-color: #29b6f6;
+    height: 2rem;
+    border: none;
+}
+
+.forgetPass:hover{
+    background-color: #0086c3;
+}
