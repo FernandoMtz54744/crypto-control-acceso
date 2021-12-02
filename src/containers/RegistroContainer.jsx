@@ -7,7 +7,7 @@ import { collection, addDoc, query, where , getDocs } from "firebase/firestore";
 
 export default function RegistroContainer() {
     const [form, setForm] = useState({correo:"", usuario:"", password:"", passwordConf:""});
-    const [validaciones, setValidaciones] = useState({existeCorreo:false, existeUsuario:false, coincidePass: true})
+    const [validaciones, setValidaciones] = useState({existeCorreo:false, existeUsuario:false, coincidePass: true, passLength: 8})
     const navigate = useNavigate ();
 
     const onChange = (e)=>{
@@ -16,7 +16,7 @@ export default function RegistroContainer() {
 
     const onSubmit = (e)=>{
       e.preventDefault();
-      if(!validaciones.existeCorreo && !validaciones.existeUsuario && validaciones.coincidePass){
+      if(!validaciones.existeCorreo && !validaciones.existeUsuario && validaciones.coincidePass && validaciones.passLength === 8){
         registrar();
       }
     }
@@ -40,6 +40,14 @@ export default function RegistroContainer() {
         const coincide = form.password===form.passwordConf;
         setValidaciones({...validaciones, coincidePass: coincide});
       }
+    }
+
+    const validarPassLength= ()=>{
+      setValidaciones({...validaciones, passLength: form.password.length})
+    }
+
+    const onPaste = (e)=>{
+      e.preventDefault();
     }
     
 
@@ -65,6 +73,8 @@ export default function RegistroContainer() {
     }
 
     return (
-        <Registro form={form} onChange={onChange} onSubmit={onSubmit} onBlur={onBlur} validaciones={validaciones} validarPass={validarPass}/>
+        <Registro form={form} onChange={onChange} onSubmit={onSubmit} onBlur={onBlur} 
+        validaciones={validaciones} validarPass={validarPass} onPaste={onPaste}
+        validarPassLength={validarPassLength}/>
     )
 }
