@@ -86,7 +86,7 @@ input, button{
     height: 2rem;
 }
 
-.registroButton:hover{
+.registroButton:hover, .salir:hover{
     cursor: pointer;
     background-color: #0086c3;
 }
@@ -116,3 +116,19 @@ input, button{
 .forgetPass:hover{
     background-color: #0086c3;
 }
+
+.mainPageClass{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.salir{
+    margin-top: 5rem;
+    background-color: #26c6da;
+    border: none;
+    height: 2rem;
+    width: 60vw !important;
+}
+

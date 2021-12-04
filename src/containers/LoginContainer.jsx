@@ -7,7 +7,7 @@ import db from "../firebase/firebaseConfig"
 import randomToken from "random-token"
 import emailjs from 'emailjs-com';
 
-export default function LoginContainer() {
+export default function LoginContainer({setUsuarioValido}) {
     const [form, setForm] = useState({usuario:"", password:""});
     const [failLogin, setFailLogin] = useState(false);
     const [resetRes, setResetRes] = useState("");
@@ -24,9 +24,11 @@ export default function LoginContainer() {
         const q = query(docRef, where("usuario", "==", form.usuario), where("password", "==", md5(form.password)));
         const querySnapshot = await getDocs(q);
         if(querySnapshot.size === 1){
+            localStorage.setItem("sesion", "true");
             navigation("/mainPage");
         }else{
             setFailLogin(true);
+            localStorage.setItem("sesion", "false");
         }
     }
 
