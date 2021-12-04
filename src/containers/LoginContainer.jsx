@@ -57,7 +57,7 @@ export default function LoginContainer() {
                 const usuarioRef = doc(db, 'Usuarios', querySnapshot.docs[0].id);
                 setDoc(usuarioRef, { token: token }, { merge: true }); //Se ingresa el token a la BD del usuario
                 
-                const url = `https://crypto-control-acceso-e16.netlify.app/ResetPassword/${token}`; //URL que se enviara
+                const url = `https://crypto-control-acceso-e16.netlify.app/#/RP/${token}`; //URL que se enviara
                 const docSnap = await getDoc(usuarioRef);
                 const data = {
                     to_correo: docSnap.data().correo,
