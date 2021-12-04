@@ -1,7 +1,7 @@
 import React from 'react'
 import imagen from "../images/cubismLogin.jpg"
 
-export default function Login({form, onChange, onSubmit, irRegistro, failLogin}) {
+export default function Login({form, onChange, onSubmit, irRegistro, failLogin, restablecerPass, resetRes}) {
     return (
         <div className="principal">
                 <h1>Bienvenido al sistema, inicie sesión</h1>
@@ -18,7 +18,7 @@ export default function Login({form, onChange, onSubmit, irRegistro, failLogin})
                             <input onChange={onChange} value={form.password} type="password" id="password" name="password" className="" autoComplete="off" required/>
                             <input type="submit" className="registroButton" value="Iniciar sesión"/>
                             <button className="regButton" onClick={irRegistro}> Registrarse</button>
-                            <button className="forgetPass" onClick={irRegistro}> Restablecer contraseña</button>
+                            <button className="forgetPass" onClick={restablecerPass}> Restablecer contraseña</button>
                         </div>
                         
                     </form>
@@ -26,6 +26,7 @@ export default function Login({form, onChange, onSubmit, irRegistro, failLogin})
             
             <div className="validaciones">
                 {failLogin?<h3>Datos incorrectos</h3>:""}
+                <h3>{resetRes}</h3>
             </div>
         </div>
     )

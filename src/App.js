@@ -6,6 +6,7 @@ import {
 import LoginContainer from "./containers/LoginContainer";
 import MainPageContainer from "./containers/MainPageContainer";
 import RegistroContainer from "./containers/RegistroContainer";
+import ResetPassContainer from "./containers/ResetPassContainer";
 import "./styles/style.css"
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
           <Route exact path="/Registro" element={<RegistroContainer/>} />
           <Route exact path="/" element={<LoginContainer/>} />
           <Route exact path="/MainPage" element={<MainPageContainer />} />
+          <Route exact path="/RP/:token" element={<ResetPassContainer/>} />
         </Routes>
     </Router>
   );
