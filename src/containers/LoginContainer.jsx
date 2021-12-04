@@ -2,9 +2,10 @@ import md5 from 'md5';
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router';
 import Login from "../pages/Login"
-import { collection, query, where , getDocs , doc, setDoc} from "firebase/firestore";
+import { collection, query, where , getDocs , doc, setDoc, getDoc} from "firebase/firestore";
 import db from "../firebase/firebaseConfig"
 import randomToken from "random-token"
+import emailjs from 'emailjs-com';
 
 export default function LoginContainer() {
     const [form, setForm] = useState({usuario:"", password:""});
@@ -33,6 +34,15 @@ export default function LoginContainer() {
         navigation("/Registro")
     }
 
+    function sendEmail(data){
+        emailjs.send('service_376oxga', 'template_3gdy01r', data, 'user_9MkTRMVzC2LVSR5WDrO9N')
+        .then((result) => {
+            console.log(result.text);
+        }, (error) => {
+            console.log(error.text);
+        });
+    }
+
     const restablecerPass = async ()=>{
         if(form.usuario === ""){
             setResetRes("Ingrese un usuario")
@@ -46,13 +56,16 @@ export default function LoginContainer() {
                 const token = randomToken(16);
                 const usuarioRef = doc(db, 'Usuarios', querySnapshot.docs[0].id);
                 setDoc(usuarioRef, { token: token }, { merge: true }); //Se ingresa el token a la BD del usuario
-
+                
                 const url = `https://crypto-control-acceso-e16.netlify.app/RP/${token}`; //URL que se enviara
-
-
+                const docSnap = await getDoc(usuarioRef);
+                const data = {
+                    to_correo: docSnap.data().correo,
+                    to_name: docSnap.data().usuario,
+                    message: url
+                }
+                sendEmail(data);
             }
-
-            
         }
     }
 
